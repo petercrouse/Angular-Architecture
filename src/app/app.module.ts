@@ -35,7 +35,7 @@ import { HomeComponent } from './components/home/home.component';
     AppRoutingModule,
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
-      name: 'CapFic App DevTools',
+      name: 'Customer App DevTools',
       maxAge: 25,
       logOnly: environment.production,
     }),

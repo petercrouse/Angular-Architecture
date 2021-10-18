@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Modal } from 'ngx-modal';
 import { IMyDpOptions, IMyDateModel, IMyInputFieldChanged } from 'mydatepicker';
-import { FICUser } from '@_features/user-maintenance/fic-user';
+import { Customer } from '@_features/user-maintenance/customer';
 import { UserMaintenanceService } from '@_features/user-maintenance/services/user-maintenance.service';
 import * as moment from 'moment';
 import * as fromUser from '@_features/user-maintenance/state';
@@ -24,7 +24,7 @@ export class UserAddComponent implements OnInit {
   @Input() cpNumberToStatusCheck: string;
   @ViewChild('AddUserModal') AddUserModal: Modal;
   @ViewChild('ConfirmationModal') ConfirmationModal: Modal;
-  @Output() returnNewUser: EventEmitter<FICUser> = new EventEmitter<FICUser>();
+  @Output() returnNewUser: EventEmitter<Customer> = new EventEmitter<Customer>();
   @Output() returnRestoredUser: EventEmitter<string> = new EventEmitter<string>();
   @Output() initializeNewUser: EventEmitter<void> = new EventEmitter<void>();
   @Output() checkStatus: EventEmitter<string> = new EventEmitter<string>();
@@ -62,16 +62,16 @@ export class UserAddComponent implements OnInit {
 
   checkCPNumberStatus(cpNumber: string) {
     if (cpNumber != null && this.cpNumberToStatusCheck !== cpNumber) {
-      this.cpNumberStatus = 'Checking CP Number Status...';
+      this.cpNumberStatus = 'Checking Customer Number Status...';
       this.setCpNumberToCheck.emit(cpNumber);
       this.checkStatus.emit(cpNumber);
     }
   }
 
-  getNewUserDetails(): FICUser {
-    const newUserDetails: FICUser = {
-      ficUser: this.addUserForm.value.ficUser,
-      cpNumber: this.cpNumberToStatusCheck,
+  getNewUserDetails(): Customer {
+    const newUserDetails: Customer = {
+      userName: this.addUserForm.value.ficUser,
+      customerNumber: this.cpNumberToStatusCheck,
       deleted: false,
       title: this.addUserForm.value.title,
       firstName: this.addUserForm.value.firstName,
@@ -79,7 +79,7 @@ export class UserAddComponent implements OnInit {
       ssn: this.addUserForm.value.ssn,
       email: this.addUserForm.value.email,
       occupation: this.addUserForm.value.occupation,
-      ficPassword: this.addUserForm.value.password1,
+      password: this.addUserForm.value.password1,
       gender: this.addUserForm.value.gender,
       birthdate: this.birthdate.formatted
     };

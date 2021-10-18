@@ -9,7 +9,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { FICUser } from '../../fic-user';
+import { Customer } from '../../customer';
 import { Store } from '@ngrx/store';
 import * as fromUser from './../../state';
 import * as userActions from './../../state/user.actions';
@@ -23,21 +23,21 @@ import * as userActions from './../../state/user.actions';
 
 export class UserListComponent {
 
-  @Input() users: FICUser[];
-  @Input() filteredUsers: FICUser[];
+  @Input() users: Customer[];
+  @Input() filteredUsers: Customer[];
   @Input() selectedUser: string;
   @Input() errorMessage: string;
-  @Output() selected = new EventEmitter<FICUser>();
+  @Output() selected = new EventEmitter<Customer>();
   @Output() deselected = new EventEmitter<void>();
 
   constructor(private sorterService: SorterService,
               private filterService: FilterService) {}
 
-  onSelect(ficUser: FICUser): void {
-    (this.selectedUser === ficUser.cpNumber) ? this.userDeSelected() : this.userSelected(ficUser);
+  onSelect(ficUser: Customer): void {
+    (this.selectedUser === ficUser.customerNumber) ? this.userDeSelected() : this.userSelected(ficUser);
   }
 
-  userSelected(ficUser: FICUser) {
+  userSelected(ficUser: Customer) {
     this.selected.emit(ficUser);
   }
 
@@ -53,7 +53,7 @@ export class UserListComponent {
     if (data && this.users) {
       data = data.toUpperCase();
       const props = ['title', 'firstName', 'lastName', 'cpNumber', 'email'];
-      this.filteredUsers = this.filterService.filter<FICUser>(this.users, data, props);
+      this.filteredUsers = this.filterService.filter<Customer>(this.users, data, props);
     } else {
       this.filteredUsers = this.users;
     }

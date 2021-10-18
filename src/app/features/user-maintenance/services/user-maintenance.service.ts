@@ -2,7 +2,7 @@ import { LogService } from '@_core/services/log.service';
 import { environment } from '@_environments/environment';
 import { tap, catchError, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { FICUser } from '../fic-user';
+import { Customer } from '../customer';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 
@@ -17,36 +17,36 @@ export class UserMaintenanceService {
   constructor(private http: HttpClient,
               private logger: LogService) { }
 
-  updateUser(user: FICUser): Observable<Boolean> {
+  updateUser(user: Customer): Observable<Boolean> {
     const url = `${this.baseUrl}api/Users/UpdateUser`;
     const body = JSON.stringify(user);
 
     return this.http.post<Boolean>(url, body);
   }
 
-  getFicUsers(): Observable<FICUser[]> {
+  getFicUsers(): Observable<Customer[]> {
     const url = `${this.baseUrl}api/users/GetFicUsers`;
 
-    return this.http.get<FICUser[]>(url);
+    return this.http.get<Customer[]>(url);
   }
 
-  getCapFicUserStatus(cpNumber: string): Observable<string> {
-    const url = `${this.baseUrl}api/users/GetSpecificCapFicUser_${cpNumber}`;
+  getCapFicUserStatus(customerNumber: string): Observable<string> {
+    const url = `${this.baseUrl}api/users/GetSpecificCapFicUser_${customerNumber}`;
 
     return this.http.get<string>(url);
   }
 
-  addNewCapFicUser(newUser: FICUser): Observable<Boolean> {
+  addNewCapFicUser(newUser: Customer): Observable<Boolean> {
     const url = `${this.baseUrl}api/users/AddNewCapFicUser`;
     const body = JSON.stringify(newUser);
 
     return this.http.post<Boolean>(url, body, { headers: this.headers });
   }
 
-  restoreDeletedCapFicUser(cpNumber: string): Observable<FICUser> {
+  restoreDeletedCapFicUser(customerNumber: string): Observable<Customer> {
     const url = `${this.baseUrl}api/users/RestoreDeletedCapFicUser`;
-    const body = JSON.stringify({ cpNumber: cpNumber });
+    const body = JSON.stringify({ customerNumber: customerNumber });
 
-    return this.http.post<FICUser>(url, body, { headers: this.headers });
+    return this.http.post<Customer>(url, body, { headers: this.headers });
   }
 }

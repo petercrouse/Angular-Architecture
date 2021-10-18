@@ -1,4 +1,4 @@
-import { FICUser } from '../fic-user';
+import { Customer } from '../customer';
 import { Action } from '@ngrx/store';
 
 export enum UserActionTypes {
@@ -29,7 +29,7 @@ export enum UserActionTypes {
 export class SetCurrentUser implements Action {
     readonly type = UserActionTypes.SetCurrentUser;
 
-    constructor(public payload: FICUser) { }
+    constructor(public payload: Customer) { }
 }
 
 export class ClearCurrentUser implements Action {
@@ -47,7 +47,7 @@ export class LoadUsers implements Action {
 export class LoadUsersSuccess implements Action {
     readonly type = UserActionTypes.LoadUsersSuccess;
 
-    constructor(public payload: FICUser[]) {}
+    constructor(public payload: Customer[]) {}
 }
 
 export class LoadUsersFail implements Action {
@@ -59,13 +59,13 @@ export class LoadUsersFail implements Action {
 export class UpdateUser implements Action {
     readonly type = UserActionTypes.UpdateUser;
 
-    constructor(public payload: FICUser) {}
+    constructor(public payload: Customer) {}
 }
 
 export class UpdateUserSuccess implements Action {
     readonly type = UserActionTypes.UpdateUserSuccess;
 
-    constructor(public payload: FICUser) {}
+    constructor(public payload: Customer) {}
 }
 
 export class UpdateUserFail implements Action {
@@ -77,13 +77,13 @@ export class UpdateUserFail implements Action {
 export class AddUser implements Action {
     readonly type = UserActionTypes.AddUser;
 
-    constructor(public payload: FICUser) {}
+    constructor(public payload: Customer) {}
 }
 
 export class AddUserSuccess implements Action {
     readonly type = UserActionTypes.AddUserSuccess;
 
-    constructor(public payload: FICUser) {}
+    constructor(public payload: Customer) {}
 }
 
 export class AddUserFail implements Action {
@@ -137,7 +137,7 @@ export class RestoreDeletedUser implements Action {
 export class RestoreDeletedUserSuccess implements Action {
     readonly type = UserActionTypes.RestoreDeletedUserSuccess;
 
-    constructor(public payload: FICUser) {}
+    constructor(public payload: Customer) {}
 }
 
 export class RestoreDeletedUserFail implements Action {

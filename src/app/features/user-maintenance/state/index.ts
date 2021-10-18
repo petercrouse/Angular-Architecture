@@ -39,8 +39,8 @@ export const getCurrentUser = createSelector(
     (state, currentUserCPNumber) => {
         if (currentUserCPNumber === '') {
             return {
-                cpNumber: '',
-                ficUser: '',
+                customerNumber: '',
+                userName: '',
                 deleted: false,
                 gender: '',
                 title: '',
@@ -50,10 +50,10 @@ export const getCurrentUser = createSelector(
                 ssn: '',
                 email: '',
                 occupation: '',
-                ficPassword: ''
+                password: ''
             };
         } else {
-            return currentUserCPNumber ? state.users.find(p => p.cpNumber === currentUserCPNumber) : null;
+            return currentUserCPNumber ? state.users.find(p => p.customerNumber === currentUserCPNumber) : null;
         }
     }
 );

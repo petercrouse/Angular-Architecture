@@ -1,7 +1,7 @@
 import { Observable, of } from 'rxjs';
 import { catchError, concatMap, map, mergeMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { FICUser } from '../fic-user';
+import { Customer } from '../customer';
 import { UserMaintenanceService } from '../services/user-maintenance.service';
 /* NgRx */
 import { Action } from '@ngrx/store';
@@ -20,7 +20,7 @@ export class UserEffects {
         ofType(userActions.UserActionTypes.LoadUsers),
         mergeMap(action =>
             this.userMaintenanceService.getFicUsers().pipe(
-                map((users: FICUser[]) => (new userActions.LoadUsersSuccess(users))),
+                map((users: Customer[]) => (new userActions.LoadUsersSuccess(users))),
                 catchError(err => of(new userActions.LoadUsersFail(err)))
             )
         )
@@ -30,7 +30,7 @@ export class UserEffects {
     updateUser$: Observable<Action> = this.actions$.pipe(
         ofType(userActions.UserActionTypes.UpdateUser),
         map((action: userActions.UpdateUser) => action.payload),
-        mergeMap((user: FICUser) =>
+        mergeMap((user: Customer) =>
             this.userMaintenanceService.updateUser(user).pipe(
                 map(data => new userActions.UpdateUserSuccess(user)),
                 catchError(err => of(new userActions.UpdateUserFail(err)))
@@ -42,7 +42,7 @@ export class UserEffects {
     addUser$: Observable<Action> = this.actions$.pipe(
         ofType(userActions.UserActionTypes.AddUser),
         map((action: userActions.AddUser) => action.payload),
-        mergeMap((user: FICUser) =>
+        mergeMap((user: Customer) =>
             this.userMaintenanceService.addNewCapFicUser(user).pipe(
                 map(data => new userActions.AddUserSuccess(user)),
                 catchError(err => of(new userActions.AddUserFail(err)))

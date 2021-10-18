@@ -1,9 +1,9 @@
 import { UserActions, UserActionTypes } from './user.actions';
-import { FICUser } from '../fic-user';
+import { Customer } from '../customer';
 
 export interface UserState {
     currentUserCPNumber: string | null;
-    users: FICUser[];
+    users: Customer[];
     error: string;
     cpNumberStatus: string;
     newCpNumberToStatusCheck: string;
@@ -23,7 +23,7 @@ export function reducer(state = initialUserState, action: UserActions): UserStat
         case UserActionTypes.SetCurrentUser:
             return {
                 ...state,
-                currentUserCPNumber: action.payload.cpNumber
+                currentUserCPNumber: action.payload.customerNumber
             };
 
         case UserActionTypes.ClearCurrentUser:
@@ -54,12 +54,12 @@ export function reducer(state = initialUserState, action: UserActions): UserStat
 
         case UserActionTypes.UpdateUserSuccess:
             const updatedUsers = state.users.map(
-                user => action.payload.cpNumber === user.cpNumber ? action.payload : user
+                user => action.payload.customerNumber === user.customerNumber ? action.payload : user
             );
             return {
                 ...state,
                 users: updatedUsers,
-                currentUserCPNumber: action.payload.cpNumber,
+                currentUserCPNumber: action.payload.customerNumber,
                 error: ''
             };
 
@@ -73,7 +73,7 @@ export function reducer(state = initialUserState, action: UserActions): UserStat
             return {
                 ...state,
                 users: [...state.users, action.payload],
-                currentUserCPNumber: action.payload.cpNumber,
+                currentUserCPNumber: action.payload.customerNumber,
                 error: ''
             };
 
@@ -86,7 +86,7 @@ export function reducer(state = initialUserState, action: UserActions): UserStat
         case UserActionTypes.DeleteUserSuccess:
             return {
                ...state,
-               users: state.users.filter(user => user.cpNumber === action.payload),
+               users: state.users.filter(user => user.customerNumber === action.payload),
                error: ''
             };
 
@@ -113,7 +113,7 @@ export function reducer(state = initialUserState, action: UserActions): UserStat
             return {
                 ...state,
                 users: [...state.users, action.payload],
-                currentUserCPNumber: action.payload.cpNumber,
+                currentUserCPNumber: action.payload.customerNumber,
                 error: ''
             };
 

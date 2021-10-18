@@ -1,7 +1,7 @@
 import { takeUntil } from 'rxjs/operators';
 import { UserEditComponent } from '@_features/user-maintenance/components/user-edit/user-edit.component';
 import { Store, select } from '@ngrx/store';
-import { FICUser } from '@_features/user-maintenance/fic-user';
+import { Customer } from '@_features/user-maintenance/customer';
 import { Observable, Subject } from 'rxjs';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
@@ -17,8 +17,8 @@ import * as userActions from '@_features/user-maintenance/state/user.actions';
 export class UserMaintenanceShellComponent implements OnInit {
 
   selectedUser$: Observable<string>;
-  currentUser$: Observable<FICUser>;
-  users$: Observable<FICUser[]>;
+  currentUser$: Observable<Customer>;
+  users$: Observable<Customer[]>;
   errorMessage$: Observable<string>;
   ngDestroyed$ = new Subject();
   cpNumberStatus$: Observable<string>;
@@ -36,7 +36,7 @@ export class UserMaintenanceShellComponent implements OnInit {
     this.currentUser$ = this.store.pipe(select(fromUser.getCurrentUser));
   }
 
-  userSelected(user: FICUser): void {
+  userSelected(user: Customer): void {
     this.store.dispatch(new userActions.SetCurrentUser(user));
   }
 
@@ -44,7 +44,7 @@ export class UserMaintenanceShellComponent implements OnInit {
     this.store.dispatch(new userActions.ClearCurrentUser());
   }
 
-  addUser(user: FICUser): void {
+  addUser(user: Customer): void {
     this.store.dispatch(new userActions.AddUser(user));
   }
 
@@ -61,15 +61,15 @@ export class UserMaintenanceShellComponent implements OnInit {
     this.store.dispatch(new userActions.SetNewCpNumberToCheckStatus(cpNumber));
   }
 
-  deleteUser(user: FICUser): void {
-    this.store.dispatch(new userActions.DeleteUser(user.cpNumber));
+  deleteUser(user: Customer): void {
+    this.store.dispatch(new userActions.DeleteUser(user.customerNumber));
   }
 
   initializeNewUser(): void {
     this.store.dispatch(new userActions.InitializeCurrentUser());
   }
 
-  updateUser(user: FICUser): void {
+  updateUser(user: Customer): void {
     this.store.dispatch(new userActions.UpdateUser(user));
   }
 }

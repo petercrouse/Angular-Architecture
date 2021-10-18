@@ -1,6 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FICUser } from '@_features/user-maintenance/fic-user';
+import { Customer } from '@_features/user-maintenance/customer';
 import { Modal } from 'ngx-modal';
 import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty';
 import { IMyDpOptions, IMyDateModel, IMyInputFieldChanged } from 'mydatepicker';
@@ -16,8 +16,8 @@ export class UserEditComponent implements OnInit {
 
   @ViewChild('ManageUserModal') ManageUserModal: Modal;
   @ViewChild('ConfirmationModal') ConfirmationModal: Modal;
-  @Input() selectedFicUser: FICUser;
-  @Output() updateUser = new EventEmitter<FICUser>();
+  @Input() selectedFicUser: Customer;
+  @Output() updateUser = new EventEmitter<Customer>();
 
   myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'dd-mm-yyyy hh:mm',
@@ -75,15 +75,15 @@ export class UserEditComponent implements OnInit {
   }
 
   mapUserDetails(): void {
-    this.manageUserForm.get('cpNumber').setValue(this.selectedFicUser.cpNumber);
-    this.manageUserForm.get('ficUser').setValue(this.selectedFicUser.ficUser);
+    this.manageUserForm.get('cpNumber').setValue(this.selectedFicUser.customerNumber);
+    this.manageUserForm.get('ficUser').setValue(this.selectedFicUser.userName);
     this.manageUserForm.get('title').setValue(this.selectedFicUser.title);
     this.manageUserForm.get('firstName').setValue(this.selectedFicUser.firstName);
     this.manageUserForm.get('lastName').setValue(this.selectedFicUser.lastName);
     this.manageUserForm.get('ssn').setValue(this.selectedFicUser.ssn);
     this.manageUserForm.get('email').setValue(this.selectedFicUser.email);
     this.manageUserForm.get('occupation').setValue(this.selectedFicUser.occupation);
-    this.manageUserForm.get('password').setValue(this.selectedFicUser.ficPassword);
+    this.manageUserForm.get('password').setValue(this.selectedFicUser.password);
     this.manageUserForm.get('gender').setValue(this.selectedFicUser.gender);
     // Sets date pickers date
     const date = moment(this.selectedFicUser.birthdate, 'YYYY/MM/DD');
@@ -93,16 +93,16 @@ export class UserEditComponent implements OnInit {
     this.ManageUserModal.open();
   }
 
-  getUserDetails(): FICUser {
-    this.selectedFicUser.cpNumber = this.manageUserForm.get('cpNumber').value;
-    this.selectedFicUser.ficUser = this.manageUserForm.get('ficUser').value;
+  getUserDetails(): Customer {
+    this.selectedFicUser.customerNumber = this.manageUserForm.get('cpNumber').value;
+    this.selectedFicUser.userName = this.manageUserForm.get('ficUser').value;
     this.selectedFicUser.title = this.manageUserForm.get('title').value;
     this.selectedFicUser.firstName = this.manageUserForm.get('firstName').value;
     this.selectedFicUser.lastName = this.manageUserForm.get('lastName').value;
     this.selectedFicUser.ssn = this.manageUserForm.get('ssn').value;
     this.selectedFicUser.email = this.manageUserForm.get('email').value;
     this.selectedFicUser.occupation = this.manageUserForm.get('occupation').value;
-    this.selectedFicUser.ficPassword = this.manageUserForm.get('password').value;
+    this.selectedFicUser.password = this.manageUserForm.get('password').value;
     this.selectedFicUser.gender = this.manageUserForm.get('gender').value;
     this.selectedFicUser.birthdate = new Date(Number(this.birthdate.date.year),
       Number(this.birthdate.date.month),
