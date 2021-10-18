@@ -1,0 +1,202 @@
+<a class="btn btn-app" (click)="mapUserDetails()"><i class="fa fa-user-md"></i>Manage User</a>
+
+<form [formGroup]="manageUserForm" (ngSubmit)="onSubmit()">
+    <modal #ManageUserModal [hideCloseButton]="true" [closeOnOutsideClick]="false" modalClass="modal-lg">
+        <modal-header>
+            <h1>Manage User</h1>
+        </modal-header>
+        <modal-content>
+            <div id="manageUserForm" class="row">
+                <div class="row" style="padding-top:5px">&nbsp;</div>
+
+                <div class="form-group">
+                    <!-- User Gender Input -->
+                    <label class="col-sm-2 control-label">
+                        Gender:
+                        <i *ngIf="!manageUserForm.controls['gender'].valid" class="fa fa-fw fa-warning text-red"></i>
+                        <i *ngIf="manageUserForm.controls['gender'].valid" class="fa fa-fw fa-check text-green"></i>
+                    </label>
+                    <div class="col-sm-4">
+                        <input type="radio" formControlName="gender" required value="M"> Male
+                        <input type="radio" formControlName="gender" required value="F" style="margin-left: 20px"> Female
+                    </div>
+
+                    <!-- User Title Input -->
+                    <label class="col-sm-2 control-label">
+                        Title:
+                        <i *ngIf="!manageUserForm.controls['title'].valid" class="fa fa-fw fa-warning text-red"></i>
+                        <i *ngIf="manageUserForm.controls['title'].valid" class="fa fa-fw fa-check text-green"></i>
+                    </label>
+                    <div class="col-sm-4">
+                        <input class="form-control" type="text"
+                               id="title" placeholder="Title"
+                               name="title" formControlName="title"
+                               required>
+                    </div>
+
+
+                    <div class="row" style="padding-top:5px">&nbsp;</div>
+
+                    <div class="form-group">
+                        <!-- User Name Input -->
+                        <label class="col-sm-2 control-label">
+                            First Name:
+                            <i *ngIf="!manageUserForm.controls['firstName'].valid" class="fa fa-fw fa-warning text-red"></i>
+                            <i *ngIf="manageUserForm.controls['firstName'].valid" class="fa fa-fw fa-check text-green"></i>
+                        </label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text"
+                                   id="firstName" placeholder="First Name"
+                                   name="firstName" formControlName="firstName"
+                                   required>
+                        </div>
+
+                        <!-- User Surname Input -->
+                        <label class="col-sm-2 control-label">
+                            Surname:
+                            <i *ngIf="!manageUserForm.controls['lastName'].valid" class="fa fa-fw fa-warning text-red"></i>
+                            <i *ngIf="manageUserForm.controls['lastName'].valid" class="fa fa-fw fa-check text-green"></i>
+                        </label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text"
+                                   id="lastName" placeholder="Surname"
+                                   name="lastName" formControlName="lastName"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-top:5px">&nbsp;</div>
+
+                    <div class="form-group">
+                        <!-- User ID Input -->
+                        <label class="col-sm-2 control-label">
+                            ID:
+                            <i *ngIf="!manageUserForm.controls['ssn'].valid" class="fa fa-fw fa-warning text-red"></i>
+                            <i *ngIf="manageUserForm.controls['ssn'].valid" class="fa fa-fw fa-check text-green"></i>
+                        </label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text"
+                                   id="ssn" placeholder="ID"
+                                   name="ssn" formControlName="ssn"
+                                   required>
+                        </div>
+
+                        <!-- User Occupation Input -->
+                        <label class="col-sm-2 control-label">
+                            Occupation:
+                            <i *ngIf="!manageUserForm.controls['occupation'].valid" class="fa fa-fw fa-warning text-red"></i>
+                            <i *ngIf="manageUserForm.controls['occupation'].valid" class="fa fa-fw fa-check text-green"></i>
+                        </label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text"
+                                   id="occupation" placeholder="Occupation"
+                                   name="occupation" formControlName="occupation"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-top:5px">&nbsp;</div>
+
+                    <div class="form-group">
+                        <!-- User CpNumber Input -->
+                        <label class="col-sm-2 control-label">
+                            CP Number:
+                            <i *ngIf="!manageUserForm.controls['cpNumber'].valid" class="fa fa-fw fa-warning text-red"></i>
+                            <i *ngIf="manageUserForm.controls['cpNumber'].valid" class="fa fa-fw fa-check text-green"></i>
+                        </label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text"
+                                   id="cpNumber" placeholder="CP Number"
+                                   [attr.disabled]="true"
+                                   name="cpNumber" formControlName="cpNumber"
+                                   required>
+                        </div>
+
+                        <!-- User Email Input -->
+                        <label class="col-sm-2 control-label">
+                            Email:
+                            <i *ngIf="!manageUserForm.controls['email'].valid" class="fa fa-fw fa-warning text-red"></i>
+                            <i *ngIf="manageUserForm.controls['email'].valid" class="fa fa-fw fa-check text-green"></i>
+                        </label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text"
+                                   id="email" placeholder="Email"
+                                   name="email" formControlName="email"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-top:5px">&nbsp;</div>
+
+                    <div class="form-group">
+                        <!-- User FICUsername Input -->
+                        <label class="col-sm-2 control-label">
+                            FIC Username:
+                            <i *ngIf="!manageUserForm.controls['ficUser'].valid" class="fa fa-fw fa-warning text-red"></i>
+                            <i *ngIf="manageUserForm.controls['ficUser'].valid" class="fa fa-fw fa-check text-green"></i>
+                        </label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text"
+                                   id="ficUser" placeholder="FIC Username"
+                                   name="ficUser" formControlName="ficUser"
+                                   required>
+                        </div>
+
+                        <!-- User Birthday Input -->
+                        <label class="col-sm-2 control-label">
+                            Date of Birth:
+                            <i *ngIf="!manageUserForm.controls['birthdate'].valid" class="fa fa-fw fa-warning text-red"></i>
+                            <i *ngIf="manageUserForm.controls['birthdate'].valid" class="fa fa-fw fa-check text-green"></i>
+                        </label>
+                        <div class="col-sm-4">
+                            <my-date-picker placeholder="Date of Birth" name="brithdate" [options]="myDatePickerOptions"
+                                            [ngModelOptions]="{standalone: true}" [(ngModel)]="birthdate" (inputFieldChanged)="onBirthDateInputFieldChanged($event)" (dateChanged)="onBirthDatePickerChanged($event)" required>
+                            </my-date-picker>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top:5px">&nbsp;</div>
+
+                    <div class="form-group">
+                        <!-- User Password Input -->
+                        <label class="col-sm-2 control-label">
+                            Password:
+                            <i *ngIf="!manageUserForm.controls['password'].valid" class="fa fa-fw fa-warning text-red"></i>
+                            <i *ngIf="manageUserForm.controls['password'].valid" class="fa fa-fw fa-check text-green"></i>
+                        </label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text"
+                                   id="password"
+                                   name="password" formControlName="password"
+                                   required>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="padding-top:5px">&nbsp;</div>
+
+                </div>
+            </div>
+        </modal-content>
+        <modal-footer>
+            <button class="btn btn-warning pull-left" type="button" (click)="clearForm()">Cancel</button>
+            <button class="btn btn-primary pull-right" type="button" [disabled]="!manageUserForm.valid" (click)="ConfirmationModal.open()">Update</button>
+        </modal-footer>
+    </modal>
+</form>
+
+<modal #ConfirmationModal  [hideCloseButton]="true" [closeOnOutsideClick]="false">
+    <modal-header>
+        <h1>Confirmation</h1>
+    </modal-header>
+    <modal-content>
+        <div class="row" style="padding: 0 15px;">
+            <label class="pull-left">Are you sure you want to save these changes?</label>
+        </div>
+    </modal-content>
+    <modal-footer>
+        <button class="btn btn-warning pull-left" type="button" (click)="ConfirmationModal.close()">No</button>
+        <button class="btn btn-primary pull-right" type="submit" (click)="onSubmit()">Yes</button>
+    </modal-footer>
+</modal>
+
+<ng2-toasty [position]="'top-center'"></ng2-toasty>

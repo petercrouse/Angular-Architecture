@@ -1,0 +1,8 @@
+<div class="box-header with-border">
+    <input type="text" 
+           name="filter"
+           [(ngModel)]="model.filter"
+           class="form-control"   
+           placeholder="Text filter" 
+           (keyup)="filterChanged($event)">
+  </div>

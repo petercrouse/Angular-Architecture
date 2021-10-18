@@ -1,0 +1,50 @@
+<section class="content-header">
+    <h1 class="pull-left">User Maintenance</h1>
+</section>
+
+<section class="content">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+
+                <div class="box-header with-border" style="padding-bottom:0px">
+                    <app-user-add class="pull-left" 
+                                  [errorMessage]="errorMessage$ | async"
+                                  [cpNumberStatus]="cpNumberStatus$ | async"
+                                  [cpNumberToStatusCheck]="cpNumberToStatusCheck$ | async"
+                                  (initializeNewUser)="initializeNewUser()"
+                                  (returnNewUser)="addUser($event)" 
+                                  (returnRestoredUser)="restoreUser($event)"
+                                  (checkStatus)="checkUserStatus($event)"
+                                  (setCpNumberToCheck)="setCpNumberToCheck($event)">
+                    </app-user-add>
+
+                    <app-user-edit *ngIf="currentUser$ | async as selectedUser"
+                                   class="pull-left" 
+                                   [selectedFicUser]="selectedUser"
+                                   (updateUser)="updateUser($event)">
+                    </app-user-edit>
+
+                    <a *ngIf="currentUser$ | async as selectedUser"
+                       class="btn btn-app">
+                       <i class="fa fa-user-times"></i>Delete User
+                    </a>
+                </div>
+
+                <div *ngIf="users$ | async as users">
+                  <app-user-list [selectedUser]="selectedUser$ | async" 
+                                 [users]="users"
+                                 [filteredUsers]="users" 
+                                 [errorMessage]="errorMessage$ | async" 
+                                 (selected)="userSelected($event)"
+                                 (deselected)="clearCurrentUser($event)">
+                  </app-user-list>   
+                </div> 
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--<feature-footer [recordKeys]="ficUserKeys" [totalRecords]="totalFicUsers" [selectedRecord]="selectedFicUser" [recordType]="'User'" (click)="onDeselect($event)"></feature-footer>-->

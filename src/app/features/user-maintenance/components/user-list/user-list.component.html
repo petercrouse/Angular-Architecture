@@ -1,0 +1,44 @@
+<div class="box-body" >
+
+  <app-filter-textbox
+    (changed)="filterChanged($event)">
+  </app-filter-textbox>
+
+  <table id="users-table-header" 
+         class="table table-bordered table-hover dataTable" 
+         role="grid" 
+         style="table-layout: fixed;">
+    <thead>
+      <tr role="row" 
+          class="bg-light-blue-gradient">
+        <th appSortBy="title" (sorted)="sort($event)" style="width: 50px">Title</th>
+        <th appSortBy="firstName" (sorted)="sort($event)" style="width: 150px">Name</th>
+        <th appSortBy="lastName" (sorted)="sort($event)" style="width: 150px">Surname</th>
+        <th appSortBy="cpNumber" (sorted)="sort($event)" style="width: 100px">CP Number</th>
+        <th appSortBy="email" (sorted)="sort($event)" style="width: 200px">Email</th>
+      </tr>
+    </thead>
+  </table>
+
+  <div class="table-responsive" 
+       style="height: 410px; overflow-x: hidden; overflow-y: scroll;">
+    <table id="fic-users-table" 
+           class="table table-bordered table-hover dataTable" 
+           role="grid" 
+           style="table-layout: fixed;">
+      <tr role="row" 
+          *ngFor="let ficUser of filteredUsers"
+          (click)="onSelect(ficUser)" 
+          [class.bg-green-gradient]="ficUser.cpNumber === selectedUser">
+
+        <td style="width: 50px;overflow-wrap:break-word;">{{ficUser.title}}</td>
+        <td style="width: 150px;overflow-wrap:break-word;">{{ficUser.firstName}}</td>
+        <td style="width: 150px;overflow-wrap:break-word;">{{ficUser.lastName}}</td>
+        <td style="width: 100px;overflow-wrap:break-word;">{{ficUser.cpNumber}}</td>
+        <td style="width: 195px;overflow-wrap:break-word;">{{ficUser.email}}</td>
+      </tr>
+    </table>
+  </div>
+  <div>&nbsp;</div>
+  <span class="badge pull-right label-default">Total FIC Users: {{filteredUsers.length}}</span>
+</div>
